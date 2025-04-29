@@ -1,0 +1,8 @@
+Flask==3.0.3
+joblib==1.4.2
+
+numpy==1.21.0
+
+# Then install these
+scikit-learn==0.22.2.post1
+
