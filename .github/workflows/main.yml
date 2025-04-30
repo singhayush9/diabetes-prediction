@@ -74,12 +74,16 @@ jobs:
             echo "Pulling latest changes..."
             git pull origin main
           
+            echo "Stopping container named diabetes-app if it exists..."
+            docker stop diabetes-app || true
+            docker rm diabetes-app || true
+          
             echo "Checking for containers on port 5000..."
             CONTAINER_ID=$(docker ps -q --filter "publish=5000")
             if [ -n "$CONTAINER_ID" ]; then
               echo "Stopping container using port 5000: $CONTAINER_ID"
-              docker stop $CONTAINER_ID
-              docker rm $CONTAINER_ID
+              docker stop $CONTAINER_ID || true
+              docker rm $CONTAINER_ID || true
             fi
           
             echo "Building new Docker image..."
@@ -87,4 +91,5 @@ jobs:
           
             echo "Running new container..."
             docker run -d -p 5000:5000 --name diabetes-app diabetes-app
+          
 
