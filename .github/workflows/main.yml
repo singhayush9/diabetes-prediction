@@ -1,0 +1,76 @@
+name: Deploy to AWS EC2
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Deploy to EC2 via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: 54.234.222.230  
+          username: ubuntu                            
+          key: |
+            -----BEGIN OPENSSH PRIVATE KEY-----
+            b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAACFwAAAAdzc2gtcn
+            NhAAAAAwEAAQAAAgEAvINEGEWQKorE3JPAq9pj6z+viuDYA+adhH3/SlGXcWmg/KnN7fUR
+            zDaTBXZS+pe6id/KbqZXXLjE0lJDqu0aoWH/rrq6gD4rDP5o9krj9f7xwy3e2fRW7xaKz2
+            lFl9PpHb/NXYTCfkIy6m6AoUqtN5b1ePOgMS5l2oOpIDiTu80UdvL4NVUGv7t+f6ktqLWK
+            mW4V80OZM6DDC0Ku/C97LpfteZRAAVjfkV8pHZADtiX73JQGTFOJAR5wikXtCd2wsHC8f4
+            SCxFT1GzdkF+ZOWz2b5E+22NZgMMLPZiDDy6CsQs93UZZqn+iliGKDavamawGII2aeK9CT
+            9MaJWwQGa/4IMe18OjCfTefuVua+hQAgNzGb4+olqhiRgS2JK3JFM35lI4n3OhqA+WBKyQ
+            ChimQGLVslCdYm+RID6cBQEcOo7qwoCyo0fzJ9bXf6uGQ0qvszED0WEh4BJjUzYMs9mZik
+            YxreIhd4iU/aTGe1RQOIAxDaI1D9S0f6/debRXfy7j3WgZ9v3UrRqfVNvlGEoRnG2n3/nt
+            PzTPpiDO1BctJMxnvJlc0zidrI0v2etddGeygvO05KXwc9BRUNBjHHYFqHgeBiuiHgjRpb
+            8WuFgka43d8ZpuTlLKmvv/zAK4PiagILmBH1PyaLcvA2vTZUJR/nZAA0NnpLQhQ0kCxS7p
+            sAAAdQvETCCbxEwgkAAAAHc3NoLXJzYQAAAgEAvINEGEWQKorE3JPAq9pj6z+viuDYA+ad
+            hH3/SlGXcWmg/KnN7fURzDaTBXZS+pe6id/KbqZXXLjE0lJDqu0aoWH/rrq6gD4rDP5o9k
+            rj9f7xwy3e2fRW7xaKz2lFl9PpHb/NXYTCfkIy6m6AoUqtN5b1ePOgMS5l2oOpIDiTu80U
+            dvL4NVUGv7t+f6ktqLWKmW4V80OZM6DDC0Ku/C97LpfteZRAAVjfkV8pHZADtiX73JQGTF
+            OJAR5wikXtCd2wsHC8f4SCxFT1GzdkF+ZOWz2b5E+22NZgMMLPZiDDy6CsQs93UZZqn+il
+            iGKDavamawGII2aeK9CT9MaJWwQGa/4IMe18OjCfTefuVua+hQAgNzGb4+olqhiRgS2JK3
+            JFM35lI4n3OhqA+WBKyQChimQGLVslCdYm+RID6cBQEcOo7qwoCyo0fzJ9bXf6uGQ0qvsz
+            ED0WEh4BJjUzYMs9mZikYxreIhd4iU/aTGe1RQOIAxDaI1D9S0f6/debRXfy7j3WgZ9v3U
+            rRqfVNvlGEoRnG2n3/ntPzTPpiDO1BctJMxnvJlc0zidrI0v2etddGeygvO05KXwc9BRUN
+            BjHHYFqHgeBiuiHgjRpb8WuFgka43d8ZpuTlLKmvv/zAK4PiagILmBH1PyaLcvA2vTZUJR
+            /nZAA0NnpLQhQ0kCxS7psAAAADAQABAAAB/zXBOKmzLGj1KS289DQNEnECuAviEbcLC9+8
+            DhAjNAwjEsT5pr80It8YsNPd6cuLeKXYKuFijYbjKTzQOHuFIRLj3wT0OjpXf+80nLmeoW
+            KEUGxXqDR+eEu1IeADJNUmmFLjXqxMLynRtrMiz4suwDYZ1eWnkwZzNJga8x89AuOKl0tT
+            /XM3y7TgwjGlDGAPZHZb7eZwYD9YmEWdvkgrQfUHXbBNlfLMZPQPLqo/Zs+KBUfg7erV5z
+            tqcqz7Q5yMmtW1UAsMvj09/KbGJMSr56wc5Vc1Y+5xMvy0kG+O6EYoivaCMoQRYFY5APrj
+            HJZjvxDEXw25NWFJGOeztXc+rpWeZoZtY4pvabqENR9b77YtBIouksxpcFMKg4GwElzfIN
+            ul04ZCcLX6QiVYzb3LSk2HOAyeUodHBCbPczZ0B2hyr5lMG7xc+AeDP9STj9EMsbpCOVVh
+            g7XgxsTgr2TugcA6RCGUjb2qsuygSUlmJcw2MHOw4pVuF7G7zXXBcsyCgcB/vLJ8wvi87k
+            bhahRRESiFt/xckWiLlvY1m3nm7DLurT3f9XpF39iy+RRHjMxypDRg1f8xzD/nFtuB93/Y
+            Vm2JGzJn/pLX9Yqq3ESEdzJA+bm1vxhG7Y6hH0HuRmdon3TcGAfzpfar1+VZjn9Zn2h4Sp
+            1S7AxEtWvbLVEwUxkAAAEAGiIAMO+F325EEOzHiIJAiQHTIR5Mqj/AZHq0HjfXwExn7rdi
+            nih+fDjO3FJuZe4UzEkvoLHxm3QSrCsbYhxfyLv+dH7aar4VzyAbDc0MBdMzIHCoqI6RKm
+            WWd3o3YEAdrmOm4+XzzTWROltHfYoXc1jiPSVInUh0fX3hf8NdBftkj2UZmqr7ikswQqkg
+            ef+AJKSxVMNgdc0YlMu+w57j7FWv8sXywBg7xpEGkrPPpNPYRtaItAOc/+1Znyq/kVMavD
+            Djz3yqvVy2dMFwminZB6YHojBlfDglfBueYqv9IMn4ZlSS4H8I6NogHfTS7UX/8AsWN3QM
+            shers6+nzb6fmwAAAQEA+8ow5VoMvwN0aE+aCZqAI7twkOnqG0TL6wuhl71Qe5wp1Hfc2A
+            UHZO8St3/3OHOXSgKmg7hgs6Be7dweEJfsEzvZTar7+c26i4d0jg9SWgzR1WhVjTKK12EC
+            nGmAPk125Mba1OBv7QTioyBnGkrFW1ypBJrPtnyO9XZB8uYevklizDRC7j2woYPFs/CDOp
+            oO0HXDW4NQeyQ1YiHuVRGxfDZNH5CV3vFxo9uZJ2Kg4wfihHDREwZD45lohgzqtvsB983t
+            JIC0VJ7S6JcTOteuUiO/PvoWvfHh3pplITHV5pBZzE3FPu5Ow8V7I6LXqS0GRkqhcHpg3K
+            mgb48fyJTq9QAAAQEAv6o2PQm913g07I54PyBDlzStYSzIw4adXy/J1mX6uVJQlf403Cbn
+            mZ9+1o7kugqKiGczP1OZAQ3dYSs4vOY5DsgY70vY7s6Y4ZmXVUGxC978YZQMuvE8QWlEXx
+            YS/YEHlD53Rxif28I8VFD+9Di2gaPDrGFujZxavX0Kl+DLsZOV8awT0qfMOW1mq6cD7FIc
+            flnUORdqAST8PpVi8fdKnKkmxLmEYL/sHwMLXMuWtxW7o5oH7tXWDWjWFOCFWE0qOkbLC9
+            6WJpEIp5eBr9xru97WFbOJDlKO+cwbjImnYZwuFD/1u5qGD0k9QjlBDnwiCEFJK6b/B7C/
+            OVeuOuqZTwAAABVyb290QGlwLTE3Mi0zMS04OS0xMDYBAgMEBQYH
+            -----END OPENSSH PRIVATE KEY-----
+          port: 22
+          script: |
+            cd /home/ubuntu/diabetes-prediction/Diabetes Prediction/Diabetes-prediction deployed
+            git pull origin main
+            docker build -t diabetes-app .
+            docker run -d -p 5000:5000 diabetes-app
